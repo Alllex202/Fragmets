@@ -21,7 +21,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity
+        // Дописал
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -41,6 +43,11 @@ public class MainActivity extends AppCompatActivity{
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Дописал
+        navigationView.setNavigationItemSelectedListener(this);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -66,11 +73,11 @@ public class MainActivity extends AppCompatActivity{
                 || super.onSupportNavigateUp();
     }
 
-
+    // Дописал
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        Toast.makeText(getApplicationContext(), "123312312", Toast.LENGTH_LONG).show();
         if (id == R.id.nav_slideshow) {
             Toast.makeText(getApplicationContext(), "Slideshow", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_gallery) {
